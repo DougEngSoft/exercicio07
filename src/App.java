@@ -1,20 +1,17 @@
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
-        Person pessoa1 = new Person("Douglas", "Cunha", "15454545478", "Solteiro", "12345623", 'm', 29);
-        String dadosDaPessoa1 = pessoa1.toString();
-        System.out.println(dadosDaPessoa1);
+        Person pessoa1 = new Person("Asaph", "Souza", "15454545478", "Solteiro", "12345123", 'm', 26);
+        System.out.println(pessoa1.toString());
     }
 }
+
 class Person{
- private String name, lastName, cpf, maritalStatus, cep;
+    private String name, lastName, cpf, maritalStatus, cep;
     private char gender;
     private int age;
-
     
     @Override
     public String toString() {
-        System.out.println("Executando toString");
         return "Person [name=" + name + ", lastName=" + lastName + ", cpf=" + cpf + ", maritalStatus=" + maritalStatus
                 + ", cep=" + cep + ", gender=" + gender + ", age=" + age + "]";
     }
@@ -79,7 +76,7 @@ class Person{
         this.lastName = lastName;
         this.cpf = cpf;
         this.maritalStatus = maritalStatus;
-        this.cep = cep;
+        this.setCep(cep);
         this.gender = gender;
         this.age = age;
     }
@@ -111,7 +108,6 @@ class Person{
     public String getCep() {
         return cep;
     }
-
     public void setCep(String cep) {
         if(cep == null){
             throw new IllegalArgumentException("CEP Invalido: CEP não pode ser nulo");
@@ -131,7 +127,6 @@ class Person{
         }
 
         this.cep = cep;
-    
     }
     public char getGender() {
         return gender;
