@@ -1,6 +1,9 @@
 public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Hello, World!");
+        Person pessoa1 = new Person("Douglas", "Cunha", "15454545478", "Solteiro", "12345623", 'm', 29);
+        String dadosDaPessoa1 = pessoa1.toString();
+        System.out.println(dadosDaPessoa1);
     }
 }
 class Person{
@@ -9,6 +12,13 @@ class Person{
     private int age;
 
     
+    @Override
+    public String toString() {
+        System.out.println("Executando toString");
+        return "Person [name=" + name + ", lastName=" + lastName + ", cpf=" + cpf + ", maritalStatus=" + maritalStatus
+                + ", cep=" + cep + ", gender=" + gender + ", age=" + age + "]";
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -101,8 +111,27 @@ class Person{
     public String getCep() {
         return cep;
     }
+
     public void setCep(String cep) {
+        if(cep == null){
+            throw new IllegalArgumentException("CEP Invalido: CEP não pode ser nulo");
+        }
+        
+        int cepSize = cep.length();
+
+        if(cepSize != 8){
+            throw new IllegalArgumentException("CEP Invalido: CEP Incompleto");
+        }
+
+        for (int i = 0; i < cepSize; i++) {
+            char myChar = cep.charAt(i);
+            if(!(myChar >= 48 && myChar <= 57)){
+                throw new IllegalArgumentException("CEP Invalido: CEP somente deve conter numeros");
+            }
+        }
+
         this.cep = cep;
+    
     }
     public char getGender() {
         return gender;
